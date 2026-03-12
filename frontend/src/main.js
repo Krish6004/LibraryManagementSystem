@@ -1,6 +1,7 @@
 import './style.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/books';
+console.log('Connecting to API at:', API_URL);
 
 // DOM Elements
 const bookGrid = document.getElementById('bookGrid');

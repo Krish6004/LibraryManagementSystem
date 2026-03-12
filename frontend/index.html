@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CYBER-LIBRARY SYSTEM</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside class="sidebar">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          LIB-OS v1.0
+        </div>
+        <nav>
+          <div style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 1rem; text-transform: uppercase;">Primary Access</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+            <li class="btn-outline btn" style="text-align: left; opacity: 1;">Dashboard</li>
+          </ul>
+        </nav>
+        
+        <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="glass" style="padding: 1rem; border-left: 3px solid var(--primary);">
+            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;">Total Records</div>
+            <div id="statTotalBooks" style="font-size: 1.5rem; font-family: var(--font-header); color: var(--primary);">--</div>
+          </div>
+          <div class="glass" style="padding: 1rem; border-left: 3px solid var(--success);">
+            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;">Available Units</div>
+            <div id="statAvailableBooks" style="font-size: 1.5rem; font-family: var(--font-header); color: var(--success);">--</div>
+          </div>
+        </div>
+        <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+          <div style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center;">
+            <span class="status-pulse"></span>
+            System Status: <span style="color: var(--success); margin-left: 5px;">ONLINE</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">Database: <span style="color: var(--primary);">CONNECTED</span></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="header-actions">
+          <div class="search-container">
+            <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary);" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="SCAN DATABASE FOR TITLES...">
+          </div>
+          <button id="addBookBtn" class="btn btn-primary">INITIALIZE NEW RECORD</button>
+        </header>
+
+        <section id="bookGrid" class="book-grid">
+          <!-- Book cards will be injected here -->
+          <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-secondary);">
+            SYNCHRONIZING WITH CENTRAL DATABASE...
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal for Add/Edit -->
+    <div id="bookModal" class="modal-overlay">
+      <div class="modal glass">
+        <span id="closeModal" class="modal-close">&times;</span>
+        <h2 id="modalTitle" style="margin-bottom: 2rem;">INITIALIZE NEW RECORD</h2>
+        <form id="bookForm">
+          <input type="hidden" id="bookFormId">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Record ID</label>
+              <input type="text" id="bookId" required placeholder="B001">
+            </div>
+            <div class="form-group">
+              <label>ISBN Index</label>
+              <input type="text" id="isbn" required placeholder="978-0...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="title" required placeholder="The Great Gatsby">
+          </div>
+          <div class="form-group">
+            <label>Author</label>
+            <input type="text" id="author" required placeholder="F. Scott Fitzgerald">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label>Genre</label>
+              <input type="text" id="genre" required placeholder="Classic">
+            </div>
+            <div class="form-group">
+              <label>Publisher</label>
+              <input type="text" id="publisher" required placeholder="Scribner">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Total Units</label>
+            <input type="number" id="totalCopies" required min="1" value="5">
+          </div>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
+            <button type="button" id="cancelBtn" class="btn btn-danger">ABORT</button>
+            <button type="submit" class="btn btn-primary">COMMIT RECORD</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
